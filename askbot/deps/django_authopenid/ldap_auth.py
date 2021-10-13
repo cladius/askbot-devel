@@ -90,8 +90,8 @@ def ldap_authenticate_default(username, password):
 
         if master_username and master_password:
             ldap_session.simple_bind_s(
-                master_username.encode(encoding),
-                master_password.encode(encoding)
+                master_username,
+                master_password
             )
 
         user_filter = askbot_settings.LDAP_USER_FILTER_TEMPLATE % (
