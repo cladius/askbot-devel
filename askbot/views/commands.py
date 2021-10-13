@@ -1058,8 +1058,11 @@ def join_or_leave_group(request):
 
     membership = request.user.get_group_membership(group)
     if membership is None:
-        membership = request.user.join_group(group)
-        new_level = membership.get_level_display()
+        if group.openness == 2:
+            new_level = None
+        else:
+            membership = request.user.join_group(group)
+            new_level = membership.get_level_display()
     else:
         request.user.leave_group(group)
         new_level = Membership.get_level_value_display(Membership.NONE)

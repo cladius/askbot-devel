@@ -13,7 +13,7 @@ ASKBOT_ROOT = os.path.abspath(os.path.dirname(askbot.__file__))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 site.addsitedir(os.path.join(ASKBOT_ROOT, 'deps'))
 
-DEBUG          = False   # set to True to enable debugging
+DEBUG          = True   # set to True to enable debugging
 TEMPLATE_DEBUG = False  # keep false when debugging jinja2 templates
 INTERNAL_IPS   = ('127.0.0.1',)
 ALLOWED_HOSTS  = ['*',] #change this for better security on your site
@@ -23,6 +23,11 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+
+#LDAP settings
+LDAP_LOGIN_DN = 'cladius_fernando@preprodexch.com'
+LDAP_PASSWORD = 'Persistent@2020'
+#####
 
 DATABASES = {
 {%- if database_engine %}
@@ -43,15 +48,7 @@ DATABASES = {
 {%- endif %}
 }
 
-db_url = dj_database_url.config(default='sqlite:///db.data')
-
-if db_url:
-    DATABASES['default'] = db_url
-    DATABASES['default'].update({ 'TEST': {
-        'CHARSET': 'utf8',  # Setting the character set and collation to utf-8
-    }})
-else:
-    DATABASES['default'] = DATABASES.get('askbot', None)
+DATABASES['default'] = DATABASES.get('askbot', None)
 
 #outgoing mail server settings
 SERVER_EMAIL         = ''
