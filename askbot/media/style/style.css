@@ -3778,6 +3778,7 @@ body.main-page ins {
 /* ----- Footer links , check blocks/footer.html----- */
 #ground {
   width: 100%;
+  color: white;
   clear: both;
   border-top: 1px solid #000;
   padding: 16px 0 0 0;
