@@ -24,6 +24,11 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+#LDAP settings
+LDAP_LOGIN_DN = 'cladius_fernando@preprodexch.com'
+LDAP_PASSWORD = 'Persistent@2020'
+#####
+
 DATABASES = {
 {%- if database_engine %}
     'askbot': {
@@ -43,15 +48,15 @@ DATABASES = {
 {%- endif %}
 }
 
-db_url = dj_database_url.config(default='sqlite:///db.data')
+#db_url = dj_database_url.config(default='sqlite:///db.data')
 
-if db_url:
-    DATABASES['default'] = db_url
-    DATABASES['default'].update({ 'TEST': {
-        'CHARSET': 'utf8',  # Setting the character set and collation to utf-8
-    }})
-else:
-    DATABASES['default'] = DATABASES.get('askbot', None)
+#if db_url:
+#    DATABASES['default'] = db_url
+#    DATABASES['default'].update({ 'TEST': {
+#        'CHARSET': 'utf8',  # Setting the character set and collation to utf-8
+#    }})
+#else:
+DATABASES['default'] = DATABASES.get('askbot', None)
 
 #outgoing mail server settings
 SERVER_EMAIL         = ''
