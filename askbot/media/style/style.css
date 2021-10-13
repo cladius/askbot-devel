@@ -4371,7 +4371,7 @@ p.signup_p {
 }
 .user-list li {
   margin: 5px 10px 15px 0;
-  display: inline-block;
+  display: block;
 }
 .user-card {
   display: inline-block;
