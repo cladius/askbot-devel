@@ -4,54 +4,67 @@
 <h1 class='section-title'>{% trans %}Help{% endtrans %}</h1>
 <p>
     {% if request.user.is_authenticated %}
-        {% trans username = request.user.username|escape %}Welcome {{username}},{% endtrans %}
+        {% trans username = request.user.username|escape %}Welcome <b>{{username}}</b>,{% endtrans %}
     {% else %}
         {% trans %}Welcome,{% endtrans %}
     {% endif %}
 </p>
 <p>
-    {% trans %}Thank you for using {{app_name}}, here is how it works.{% endtrans %}
+    {% trans %}Thank you for being part of our community.{% endtrans %}
 </p>
-<a name="content"></a>
-<h2>{% trans %}How questions, answers and comments work{% endtrans %}</h2>
+
+<a name="why"></a>
+<h2>{% trans %}Why does this portal exist?{% endtrans %}</h2>
 <p>
-    {% trans %}This site is for asking and answering questions, not for open-ended discussions.{% endtrans %}
-    {% trans %}We encourage everyone to use “question” space for asking and “answer” for answering.{% endtrans %}
-</p>
-<p>
-    {% trans %}Despite that, each question and answer can be commented – 
-    the comments are good for the limited discussions.{% endtrans %}
-</p>
-<a name="search"></a>
-<h2>{% trans %}Please search before asking your questions{% endtrans %}</h2>
-<p>{% trans %}Type your question in the search bar and see whether a similar question has been asked before{% endtrans %}.
-</p>
-<p>{% trans %}Search has advanced capabilities:{% endtrans %}</p>
-<ul>
-    <li>{% trans %}to search in title - enter [title: your text]{% endtrans %}</li>
-    <li>{% trans %}to search by tags - enter [tag: sometag] or #sometag{% endtrans %}</li>
-    <li>{% trans %}to search by user - enter [user: somename] or @somename or @"some name"{% endtrans %}</li>
-</ul>
-<p>{% trans %}In addition, it is possible to click on tags to add them to the search query.{% endtrans %}
-{% if settings.TAG_SEARCH_INPUT_ENABLED %}
-    {% trans %}Finally, a separate tag search box is available in the side bar of the main page, where the search tags can be entered as well{% endtrans %}
-{% endif %}
-</p>
-<p>{% trans %}<em>Important!!!</em> All search terms are combined with a logical "AND" expression - to narrow the search by adding new terms.{% endtrans %}</p>
-<a name="voting"></a>
-<h2>{% trans %}Voting{% endtrans %}</h2>
-<p>
-    {% trans %}Voting in {{app_name}} helps to select best answers and thank most helpful users.{% endtrans %}
+    {% trans %}This portal employs the collective experience, competency and knowledge of the organization for solving an individual's query.{% endtrans %}
+    {% trans %}In effect, it enables us all to collaboratively solve problems.{% endtrans %}
 </p>
 <p>
-    {% trans %}Please vote when you find helpful information,
-    it really helps the {{app_name}} community.{% endtrans %}
+    {% trans %}Have you ever been in a situation where you were wrestling with a particularly challenging problem? 
+    And you were eagerly awaiting to tag an expert in that area to help you out? 
+    Our community portal is exactly the solution for such sticky situations. A place where we knock down our problems with our collective might.{% endtrans %}
 </p>
-<a name="other"></a>
-<h2>{% trans %}Other topics{% endtrans %}</h2>
+
+<a name="how"></a>
+<h2>{% trans %}How does this work?{% endtrans %}</h2>
 <p>
-    {% trans %}You can @mention users anywhere in the text to point their attention,
-    follow users and conversations and report inappropriate content by flagging it.{% endtrans %}
+    {% trans %}When you need help, go ahead and <b><a href="/question/360/how-do-i-ask-my-question/">ask a question</a> to your community.</b> 
+    
+    Questions could be:
+    <li>Specific to Persistent: Eg: <b><a href="/question/41/how-do-i-connect-to-the-psl-vpn/">How do I request access to VPN?</a></b></li>
+    <li>Technical: Eg: <b><a href="/question/21/how-can-i-debug-my-nodejs-application/">How to debug Node.js applications?</a></b></li>
 </p>
-<p>{% trans %}Enjoy.{% endtrans %}</p>
+<p>
+    For open ended discussions or event based discussions you should use Teams which is more suited for those kind of conversations. 
+    Eg: Anyone interested in a short trek to Shivneri fort this weekend?
+    {% endtrans %}
+</p>
+<p>
+    {% trans %}When someone in your community needs help, try to help out with <b><a href="/question/333/how-do-i-answer-a-question/">an answer.</a></b>{% endtrans %}
+</p>
+<p>
+    {% trans %}Your hard work in helping out others will earn you <b><a href="/question/349/what-is-karma-how-does-it-change/">karma points</a>.</b>{% endtrans %}
+    {% trans %}Eventually we will connect karma points to Credit Points and maybe even the R&R awards.{% endtrans %}
+</p>
+
+<a name="private"></a>
+<h2>{% trans %}Private groups{% endtrans %}</h2>
+<p>
+    {% trans %}We also have private groups to enable project specific Q&As.{% endtrans %}
+    {% trans %}For more info, check out <b><a href="/questions/scope:all/sort:activity-desc/tags:group,community/page:1/">the private group Q&As</a>.</b>{% endtrans %}
+</p>
+
+<a name="tips"></a>
+<h2>{% trans %}Pro Tips{% endtrans %}</h2>
+<p>
+    <li>{% trans %}<b><a href="/question/351/how-does-the-search-work/">Learn to search like a pro</a>.</b>{% endtrans %}</li>
+    <li>{% trans %}<b><a href="/question/335/what-are-the-rules-for-tagging/">Tag tips</a>.</b>{% endtrans %}</li>
+    <li>{% trans %}<b><a href="/question/334/what-is-the-purpose-of-comments/">When to use comments?</a>.</b>{% endtrans %}</li>
+    <li>{% trans %}<b><a href="/question/340/how-do-i-add-html-code-as-part-of-a-question-or-answer/">I want to get all fancy while editing my Q&As</a>.</b>{% endtrans %}</li>
+    <li>{% trans %}<b><a href="/question/43/how-do-i-add-a-table-in-the-answer/">Dude, where's my table?</a>.</b>{% endtrans %}</li>
+    <li>{% trans %}<b><a href="/question/336/where-do-i-raise-an-issuequestion-related-to-this-portal-itself/">I found a bug. Where do I report it?</a>.</b>{% endtrans %}</li>
+    <li>{% trans %}<b><a href="/question/345/what-enhancements-would-you-like-in-this-community-portal/">I like this portal. But I want to request an enhancement</a>.</b>{% endtrans %}</li>
+</p>
+
+<p>{% trans %}Enjoy! Together let's <b>See Beyond and Rise Above</b> {% endtrans %}</p>
 {% endblock %}
