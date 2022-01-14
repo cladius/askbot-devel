@@ -4,6 +4,11 @@
   href="{{ url('tags') }}"
   {% if active_tab == 'tags' %}class="on"{% endif %}
 >{% trans %}tags{% endtrans %}</a>
+<a
+  id="navStats"
+  href="{{ url('stats') }}"
+  {% if active_tab == 'stats' %}class="on"{% endif %}
+>{% trans %}stats{% endtrans %}</a>
 {% if settings.GROUPS_ENABLED %}
 <span class="dropdown groups-dropdown">
 <a
