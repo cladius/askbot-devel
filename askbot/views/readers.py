@@ -376,6 +376,63 @@ def tags(request):#view showing a listing of available tags - plain list
     else:
         return render(request, 'tags.html', data)
 
+def stats(request):#view showing statistics
+    form = ShowTagsForm(getattr(request, request.method))
+    form.full_clean()
+    page = form.cleaned_data['page']
+    sort_method = form.cleaned_data['sort']
+    query = form.cleaned_data['query']
+
+    tag_list_type = askbot_settings.TAG_LIST_FORMAT
+    query_params = {'deleted': False, 'language_code': translation.get_language()}
+
+    tags_qs = Tag.objects.filter(**query_params).exclude(used_count=0)
+    order_by = '-used_count'
+    tags = tags_qs.order_by(order_by)
+    data = {
+            'active_tab': 'stats',
+            'page_class': 'tags-page',
+            'tag_list_type': tag_list_type, 'query': query, 'tab_id': sort_method, 'keywords': query,
+            'search_state': SearchState(*[None for x in range(8)])
+            }
+    tagsData = [['name', 'count']]
+    for tag in tags:
+        tagsData.append([tag.name, tag.used_count])
+
+    data['tagsData'] = tagsData
+
+    quesAnsData = [['type', 'count']]
+    answered = models.Thread.objects.filter(answer_count__gt=0).count()
+    unanswered = models.Thread.objects.filter(answer_count=0).count()
+    quesAnsData.append(['Answered Questions', answered])
+    quesAnsData.append(['Unanswered Questions', unanswered])
+    data['quesAnsData'] = quesAnsData
+
+    newQAData = []
+    now = datetime.datetime.now()
+    qcount = models.Thread.objects.filter(added_at__month=now.strftime("%m"),
+                                          added_at__year=now.strftime("%Y")).count()
+    acount = models.Post.objects.filter(post_type='answer', added_at__month=now.strftime("%m"),
+                                        added_at__year=now.strftime("%Y")).count()
+    newQAData.append([now.strftime("%B-%y"), qcount, acount])
+    for _ in range(0, 5):
+        now = now.replace(day=1) - datetime.timedelta(days=1)
+        qcount = models.Thread.objects.filter(added_at__month=now.strftime("%m"),
+                                              added_at__year=now.strftime("%Y")).count()
+        acount = models.Post.objects.filter(post_type='answer', added_at__month=now.strftime("%m"),
+                                            added_at__year=now.strftime("%Y")).count()
+        newQAData.append([now.strftime("%B-%y"), qcount, acount])
+    qaData = [['Day', 'Questions', 'Answers']] + newQAData[::-1]
+    data['newQAData'] = qaData
+    data.update(context.get_extra('ASKBOT_TAGS_PAGE_EXTRA_CONTEXT', request, data))
+    if request.is_ajax():
+        template = get_template('stats/content.html')
+        json_data = {'success': True, 'html': template.render(data, request)}
+        json_string = json.dumps(json_data)
+        return HttpResponse(json_string, content_type='application/json')
+    else:
+        return render(request, 'stats.html', data)
+
 @csrf.csrf_protect
 def question(request, id):#refactor - long subroutine. display question body, answers and comments
     """view that displays body of the question and
