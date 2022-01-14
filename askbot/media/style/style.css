@@ -537,6 +537,9 @@ body.user-messages {
 #metaNav #navTags {
   background: 0px -95px url(../images/sprites.png) no-repeat;
 }
+#metaNav #navStats {
+  background: 3px -204px url(../images/sprites.png) no-repeat;
+}
 #metaNav #navUsers,
 #metaNav #navGroups {
   background: 3px -133px url(../images/sprites.png) no-repeat;

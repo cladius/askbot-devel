@@ -65,6 +65,11 @@ urlpatterns = [
         name='tags'
     ),
     url(
+        r'^%s$' % pgettext('urls', 'stats/'),
+        views.readers.stats,
+        name='stats'
+    ),
+    url(
         r'^%s$' % pgettext('urls', 'users/'),
         views.users.show_users,
         name='users'
