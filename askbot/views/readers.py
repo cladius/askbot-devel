@@ -52,7 +52,7 @@ from askbot.utils.loading import load_module
 from askbot.utils.translation import get_language_name
 from askbot.utils.url_utils import reverse_i18n
 from askbot.views import context
-import askbot
+import askbot, datetime
 
 # used in index page
 #todo: - take these out of const or settings
