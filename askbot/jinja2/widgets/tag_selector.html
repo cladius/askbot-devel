@@ -1,7 +1,8 @@
 {# todo - maybe disable navigation from ignored tags here when "hide" is on - with js? #}
 {% import "macros.html" as macros %}
 <div id="tagSelector" class="box">
-    <h2>{% trans %}Interesting tags{% endtrans %}</h2>
+    <div class="tagSelectors"><h2>{% trans %}Interesting tags{% endtrans %}
+    <input id="interestingTagAdd"  class="tagBtn" type="submit" value="{% trans %}add{% endtrans %}"/></h2></div>
     {{
         macros.tag_list_widget(
             interesting_tag_names,
@@ -16,10 +17,14 @@
     #}
     <div class="clearfix"></div>
     <div class="inputs">
+      
         <input id="interestingTagInput" autocomplete="off" type="text"/>
-        <input id="interestingTagAdd" type="submit" value="{% trans %}add{% endtrans %}"/>
+        <!-- <input id="interestingTagAdd" type="submit" value="{% trans %}add{% endtrans %}"/> -->
     </div>
-    <h2>{% trans %}Ignored tags{% endtrans %}</h2>
+    
+    <h2>{% trans %}Ignored tags{% endtrans %}
+    <input id="ignoredTagAdd" class="tagBtn" type="submit" value="{% trans %}add{% endtrans%}"/>
+    </h2>
     {{
         macros.tag_list_widget(
             ignored_tag_names,
@@ -34,7 +39,7 @@
     #}
     <div class="inputs">
         <input id="ignoredTagInput" autocomplete="off" type="text"/>
-        <input id="ignoredTagAdd" type="submit" value="{% trans %}add{% endtrans%}"/>
+        
     </div>
     {% if settings.SUBSCRIBED_TAG_SELECTOR_ENABLED %}
         <h2>{% trans %}Subscribed tags{% endtrans %}</h2>
