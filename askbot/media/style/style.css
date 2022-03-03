@@ -19,9 +19,11 @@ body {
   padding: 0;
   color: #666;
   font-family: Arial;
+  height: 100vh;
 }
+
 div {
-  margin: 0 auto;
+  margin: 0 ;
   padding: 0;
 }
 h1,
@@ -1070,7 +1072,7 @@ body.anon.ask-page .search-drop-menu {
   padding-left: 0;
   background: #eceeeb;
   line-height: 30px;
-  text-align: right;
+  text-align: left;
   font-size: 18px !important;
   font-weight: normal;
   color: #656565;
@@ -3785,43 +3787,40 @@ body.main-page ins {
   background: #16160f;
   font-size: 16px;
   font-family: 'Open Sans Condensed', Arial, sans-serif;
-}
+ }
 #ground a:hover {
   color: #ebff88;
-}
+} 
 #ground p {
   margin-bottom: 0;
+} 
+
+.content-wrapper.footer { 
+  
+   background: white;
+   padding:20px 20px; 
+   margin-top:35em;
+   height: 30px; 
+   display: flex;
+   justify-content: space-between;
+   vertical-align: middle;
 }
-.footer-links {
-  color: #EEE;
-  text-align: left;
-  width: 450px;
-  float: left;
-}
-.footer-links a {
-  color: #e7e8a8;
-}
-.powered-link {
-  width: 450px;
-  float: left;
-  text-align: left;
-}
-.powered-link a {
-  color: #8ebcc7;
-}
+
 .copyright {
-  color: #616161;
-  width: 500px;
-  float: right;
-  text-align: right;
+  font-family: Arial;
+  font-size: 10px !important;
+  display:flex;
+  color: #0e0d0d;
+  height:30px;  
 }
 .copyright a {
-  color: #8ebcc7;
+  color:#000 ;
 }
-.copyright img.license-logo {
-  margin: 6px 0px 20px 10px;
-  float: right;
-}
+.right-space{
+  
+  margin-right: 30px;
+ }
+
 .notify-me {
   float: left;
 }
@@ -5010,6 +5009,8 @@ td.setting-input textarea {
   .content-wrapper {
     width: 100%;
   }
+  
+  
   #ContentRight {
     display: none;
   }
@@ -5105,11 +5106,7 @@ td.setting-input textarea {
   .question-page .post-update-info .badge-count {
     display: none;
   }
-  .footer-links,
-  .powered-link {
-    text-align: center;
-    width: 100%;
-  }
+  
   #metaNav {
     float: left;
     margin-left: 8px;
