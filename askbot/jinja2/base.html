@@ -35,6 +35,7 @@
         {% endif %}
         {% include "widgets/header.html" %} {# Logo, user tool navigation and meta navitation #}
         {% include "widgets/secondary_header.html" %} {# Scope selector, search input and ask button #}
+        <main>
         {% if settings.ENABLE_LEADING_SIDEBAR %}
         <div id="leading-sidebar">
             {{ settings.LEADING_SIDEBAR }}
@@ -44,6 +45,7 @@
             {% block body %}
             {% endblock %}
         </div>
+    </main>
         {% if settings.FOOTER_MODE == 'default' %}
             {% include "widgets/footer.html" %}
         {% elif settings.FOOTER_MODE == 'customize' %}

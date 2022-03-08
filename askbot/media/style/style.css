@@ -11,39 +11,101 @@
 }
 /* Library of predifined less functions styles */
 /* ----- General HTML Styles----- */
+
+/*  global changes*/
+
+
 body {
   background: #FFF;
   font-size: 14px;
   line-height: 150%;
   margin: 0;
-  padding: 0;
-  color: #666;
+  padding: 0; 
   font-family: Arial;
-  height: 100vh;
+  height: 100vh;  
+  color: #4d4d4d;
+  font-family: arial;
+  font-weight: 400;
+
+}
+
+main{
+  margin: 0px 100px;
+  min-height: calc(100vh - 290px);
 }
 
 div {
   margin: 0 ;
   padding: 0;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-ul,
-li,
-dl,
-dt,
-dd,
-form,
-img,
-p {
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: Arial;
+}
+
+h1,h2,h3,h4,h5,h6,ul,li,dl,dt,dd,form,img,p {
   margin: 0;
   padding: 0;
   border: none;
 }
+
+
+button.primary{
+  height: 50px;
+  padding:16px 40px;
+  font-family:arial;
+  font-size:16px;
+  font-weight:bold;
+  line-height:18px;
+  color: #FFFFFF;
+  background-color: #00ADC6;
+  border:1px solid #00ADC6;
+  Border-radius:100%; 
+  }
+  
+  button:hover{
+    height: 50px;
+    padding:16px 40px;  
+    font-family:arial;  
+    font-size:16px;  
+    font-weight:bold;  
+    line-height:18px;  
+    color:#00ADC6;  
+    background-color: #FFFFFF;  
+    border:1px solid #00ADC6;  
+    Border-radius:100%;
+  }
+  
+  button:disabled{
+  height: 50px;
+  padding:16px 40px;
+  font-family:arial;
+  font-size:16px;
+  font-weight:bold;
+  line-height:18px;
+  color:#999999;
+  background-color: #CCCCCC;
+  border:1px solid #CCCCCC;
+  Border-radius:100%;
+  }
+  
+  a{
+    font-family:Arial;
+    font-size:14px;  
+    font-weight:normal;  
+    color: #FD5F07 ;  
+    text-decoration: none;
+  }
+  
+  a:hover{
+  font-family:Arial;
+  font-size:14px;
+  font-weight:normal;
+  color: #FD5F07 !important;
+  text-decoration: underline;
+  }
+/*  End of global changes*/
+
 label {
   vertical-align: middle;
 }
@@ -191,7 +253,7 @@ pre {
   background-color: #F5F5F5;
   padding-left: 5px;
   padding-top: 5px;
-  padding-bottom: 20px ! ie7;
+  padding-bottom: 20px ;
 }
 code {
   font-family: Consolas, Monaco, Liberation Mono, Lucida Console, Monospace;
@@ -211,12 +273,14 @@ html {
 * html .paginator {
   height: 1;
   overflow: visible;
+
 }
  + html .clearfix,
  + html .paginator {
   min-height: 1%;
 }
 .clearfix:after,
+
 .paginator:after {
   clear: both;
   content: ".";
@@ -1370,28 +1434,31 @@ ul#searchTags {
   padding: 0;
   width: 100%;
 }
+/* Changed by Mohini */
 .short-summary {
   position: relative;
   filter: inherit;
-  padding: 10px 0 3px 0;
-  border-bottom: 1px solid #DDDBCE;
+  padding: 30px 0 30px 0;
+  border-bottom: 1px solid #EEEEEE;
   margin-bottom: 1px;
   overflow: hidden;
   width: 733px;
   float: left;
+  color:231e28;
   /*background: url(../images/summary-background.png) repeat-x;*/
 }
 .short-summary h2 {
-  font-size: 20px;
-  font-weight: normal;
+  font-size: 20px ;
+  font-weight: 600;
   line-height: 26px;
   padding-left: 0;
-  margin-bottom: 7px;
+  margin-bottom: 20px;
   display: block;
-  font-family: 'Open Sans Condensed', Arial, sans-serif;
+  font-family:  Arial ;
 }
 .short-summary a {
-  color: #464646;
+  color: #4d4d4d;
+  font-size: 14px;
 }
 .short-summary .userinfo {
   text-align: right;
@@ -1404,21 +1471,22 @@ ul#searchTags {
   font-size: 11px;
   clear: both;
   font-weight: normal;
-  color: #555;
+  color: #4D4D4D;
 }
 .short-summary .userinfo a {
-  font-weight: bold;
-  font-size: 11px;
+  font-weight: 600;
+  font-size: 14px;
 }
 .short-summary .counts {
   float: right;
   margin: 4px 0 0 5px;
-  font-family: 'Open Sans Condensed', Arial, sans-serif;
+  font-family: Arial ;
+ 
 }
 .short-summary .counts .item-count {
   padding: 0px 5px 0px 5px;
-  font-size: 25px;
-  font-family: 'Open Sans Condensed', Arial, sans-serif;
+  font-size: 14px;
+  font-family:  Arial ;
 }
 .short-summary .counts .votes div,
 .short-summary .counts .views div,
@@ -1427,7 +1495,7 @@ ul#searchTags {
   margin-top: 3px;
   font-size: 14px;
   line-height: 14px;
-  color: #646464;
+  color: #4D4D4D;
 }
 .short-summary .tags {
   margin: 0 0 0 1px;
@@ -1437,15 +1505,15 @@ ul#searchTags {
 .short-summary .favorites,
 .short-summary .views {
   text-align: center;
-  margin: 0 3px;
+  margin: 0 10px;
   padding: 8px 2px 0px 2px;
-  width: 51px;
+   width: 51px; 
   float: right;
-  height: 44px;
-  border: #dbdbd4 1px solid;
+  height: 44px; 
+  /* border: #dbdbd4 1px solid; */
 }
 .short-summary .votes {
-  background: url(../images/vote-background.png) repeat-x;
+   background: url(../images/vote-background.png) repeat-x;
 }
 .short-summary .answers {
   background: url(../images/answers-background.png) repeat-x;
@@ -1454,19 +1522,20 @@ ul#searchTags {
   background: url(../images/view-background.png) repeat-x;
 }
 .short-summary .no-votes .item-count {
-  color: #b1b5b6;
+
+  color: #4d4d4d;
 }
 .short-summary .some-votes .item-count {
   color: #4a757f;
 }
 .short-summary .no-answers .item-count {
-  color: #b1b5b6;
+  color: #4D4D4D;
 }
 .short-summary .some-answers .item-count {
   color: #eab243;
 }
 .short-summary .no-views .item-count {
-  color: #b1b5b6;
+  color: #4D4D4D;
 }
 .short-summary .some-views .item-count {
   color: #d33f00;
@@ -1669,12 +1738,13 @@ ul.js-related-tags li {
   padding-left: 4px;
   vertical-align: text-top;
 }
+/* changed by Mohini */
 .js-tag-name {
   cursor: pointer;
-  background: #f3f6f6;
-  border: #fff 1px solid ;
-  border-top: #fff 2px solid;
-  outline: #cfdbdb 1px solid !important;
+  background: #eeeeee;
+  /* border: #fff 1px solid ; */
+  /* border-top: #fff 2px solid; */
+  /* outline: #cfdbdb 1px solid !important; */
   -webkit-box-shadow: 0px 0px 5px #d3d6d7;
   -moz-box-shadow: 0px 0px 5px #d3d6d7;
   box-shadow: 0px 0px 5px #d3d6d7;
@@ -1682,19 +1752,24 @@ ul.js-related-tags li {
   height: 17px;
   line-height: 17px;
   font-weight: normal;
-  font-size: 11px;
-  padding: 0px 8px 0px 8px;
+  font-size: 10px;
+  padding: 0px 10px 0px 10px;
   text-decoration: none;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
   font-family: Arial;
-  color: #717179;
+  color: #4D4D4D;
+  border-radius: 100px;
+  /* margin-top: 20px; */
+  margin-right:10px;
 }
+/* end of change */
 .js-deletable-tag {
   margin-right: 3px;
   white-space: nowrap;
 }
+
 .tags a.js-tag-name,
 .tags span.js-tag-name {
   color: #585858;
@@ -3778,48 +3853,38 @@ body.main-page ins {
   font-weight: bold;
 }
 /* ----- Footer links , check blocks/footer.html----- */
-#ground {
-  width: 100%;
-  color: white;
-  clear: both;
-  border-top: 1px solid #000;
-  padding: 16px 0 0 0;
-  background: #16160f;
-  font-size: 16px;
-  font-family: 'Open Sans Condensed', Arial, sans-serif;
- }
-#ground a:hover {
-  color: #ebff88;
-} 
-#ground p {
-  margin-bottom: 0;
-} 
 
+/* changed by Mohini */
 .content-wrapper.footer { 
   
-   background: white;
-   padding:20px 20px; 
-   margin-top:35em;
+   background:#FFFFFF;
+   padding:20px 0px 20px 0px; 
+   margin-top:35em; 
    height: 30px; 
    display: flex;
    justify-content: space-between;
    vertical-align: middle;
+   border-bottom: 1px solid #EEEEEE;
 }
 
 .copyright {
   font-family: Arial;
   font-size: 10px !important;
   display:flex;
-  color: #0e0d0d;
+  color: #4D4D4D;
   height:30px;  
+  display: flex ;
 }
 .copyright a {
-  color:#000 ;
+  color:#4D4D4D ;
 }
-.right-space{
-  
+.right-space{  
   margin-right: 30px;
  }
+ .copyright a:hover {
+  color: #FD5F07;
+} 
+/* end of change */
 
 .notify-me {
   float: left;
