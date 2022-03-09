@@ -101,7 +101,7 @@ button.primary{
   font-family:Arial;
   font-size:14px;
   font-weight:normal;
-  color: #FD5F07 !important;
+  /* color: #FD5F07 !important; */
   text-decoration: underline;
   }
 /*  End of global changes*/
@@ -3882,7 +3882,7 @@ body.main-page ins {
   margin-right: 30px;
  }
  .copyright a:hover {
-  color: #FD5F07;
+  color: #4d4d4d;
 } 
 /* end of change */
 
