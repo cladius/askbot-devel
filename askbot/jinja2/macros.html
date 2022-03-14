@@ -497,7 +497,8 @@ for the purposes of the AJAX comment editor #}
            class="off"
            title="{{desc_tooltip}}"><span>{{label}}</span></a>
     {% endif %}
-    <script type="text/javascript">{# need to pass on text translations to js #}
+    {# need to pass on text translations to js #}
+    <script type="text/javascript">
         askbot['data']['sortButtonData'] = askbot['data']['sortButtonData'] || {};
         askbot['data']['sortButtonData']['{{key_name}}'] = {
             label: '{{label}}',
