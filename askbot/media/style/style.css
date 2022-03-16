@@ -18,9 +18,6 @@
 /* Library of predifined less functions styles */
 /* ----- General HTML Styles----- */
 
-/*  global changes*/
-
-
 body {
   background-color: #FFF;
   font-size: 14px;
@@ -205,14 +202,13 @@ textarea {
   padding: 3px 5px;
   width: 398px;
 }
-/* changed by mohini */
 
 .js-tag{
   display: block;
   height: 17px;
   margin: 0 5px 0 0;
   padding: 0;
-  
+
 }
 
 .js-tag-name {
@@ -234,7 +230,6 @@ border-radius: 20px;
   font-size:13px;
   font-weight:500;
 }
-/* end of change */
 
 iframe {
   border: none;
@@ -282,7 +277,7 @@ pre {
   background-color: #F5F5F5;
   padding-left: 5px;
   padding-top: 5px;
-  padding-bottom: 20px ;
+  padding-bottom: 20px !ie7;
 }
 code {
   font-family: Consolas, Monaco, Liberation Mono, Lucida Console, Monospace;
@@ -464,7 +459,7 @@ body.user-messages {
   font-family: 'Open Sans Condensed', Arial, sans-serif;
 }
 
-/* changed by Mohini */
+
 .content-wrapper {
   /* wrapper positioning class */
   width: 960px;
@@ -500,7 +495,7 @@ body.user-messages {
    .copyright a:hover {
     color: #4d4d4d;
   } 
-  /* end of change */
+  
 
 #logo img {
   padding: 5px 0px 5px 0px;
@@ -1193,9 +1188,9 @@ body.anon.ask-page .search-drop-menu {
 .box p.info-box-follow-up-links {
   text-align: right;
   margin: 0;
-}
+ }
 .box h2 {
-  padding-left: 0;
+   padding-left: 0;
   background: #eceeeb;
   line-height: 30px;
   text-align: left;
@@ -1207,6 +1202,7 @@ body.anon.ask-page .search-drop-menu {
   font-family: 'Open Sans Condensed', Arial, sans-serif;
   width: 190px;
 }
+
 .box h3 {
   color: #4a757f;
   font-size: 18px;
@@ -1496,7 +1492,7 @@ ul#searchTags {
   padding: 0;
   width: 100%;
 }
-/* Changed by Mohini */
+
 .short-summary {
   position: relative;
   filter: inherit;
@@ -1506,18 +1502,15 @@ ul#searchTags {
   width: 733px;
   float: left;
   color:231e28;
- 
-}
+ }
 
 .question{
   width:420px;
   overflow: hidden;
   float: left;
-  
 }
 
 .question-row  {
- 
   overflow: hidden;
 }
 
@@ -1653,7 +1646,7 @@ ul#searchTags {
   background: #eab243;
   color: yellow;
 }
-/* end of change */
+
 /* ----- Question list Paginator , check main_content/pager.html and macros/utils_macros.html----- */
 .evenMore {
   font-size: 13px;
