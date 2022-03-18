@@ -9,39 +9,98 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+ .container{
+  width: 1166px;
+  position: relative;
+  margin:0 auto;
+} 
 /* Library of predifined less functions styles */
 /* ----- General HTML Styles----- */
+
 body {
-  background: #FFF;
+  background-color: #FFF;
   font-size: 14px;
-  line-height: 150%;
+  line-height: normal;
   margin: 0;
-  padding: 0;
-  color: #666;
+  padding: 0; 
   font-family: Arial;
+  height: 100vh;  
+  color: #4d4d4d;
+  font-weight: 400;
+
 }
+
+main{
+  margin: 0px 100px;
+  min-height: calc(100vh - 290px);
+}
+
 div {
-  margin: 0 auto;
+  margin: 0  ;
   padding: 0;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-ul,
-li,
-dl,
-dt,
-dd,
-form,
-img,
-p {
+
+h1,h2,h3,h4,h5,h6,ul,li,dl,dt,dd,form,img,p {
   margin: 0;
   padding: 0;
   border: none;
 }
+
+button.primary{
+  padding:0 40px ;
+  font-size:16px;
+  font-weight:bold;
+  line-height:50px;
+  color: #FFFFFF;
+  background: #00ADC6;
+  border:1px solid #00ADC6;
+  Border-radius:25px; 
+  }
+  
+  button:hover{
+    height: 50px;
+    padding:16px 40px;  
+    font-family:arial;  
+    font-size:16px;  
+    font-weight:bold;  
+    line-height:18px;  
+    color:#00ADC6;  
+    background: #FFFFFF;  
+    border:1px solid #00ADC6;  
+    Border-radius:25px;
+  }
+  
+  button:disabled{
+  height: 50px;
+  padding:16px 40px;
+  font-family:arial;
+  font-size:16px;
+  font-weight:bold;
+  line-height:18px;
+  color:#999999;
+  background: #CCCCCC;
+  border:1px solid #CCCCCC;
+  Border-radius:25px;
+  }
+  
+  a{
+    font-family:Arial;
+    font-size:14px;  
+    font-weight:normal;  
+    color: #4d4d4d ;  
+    text-decoration: none;
+  }
+  
+  a:hover{
+  font-family:Arial;
+  font-size:14px;
+  font-weight:normal;
+  color: #4d4d4d !important; 
+  text-decoration: underline;
+  }
+/*  End of global changes*/
+
 label {
   vertical-align: middle;
 }
@@ -143,6 +202,35 @@ textarea {
   padding: 3px 5px;
   width: 398px;
 }
+
+.js-tag{
+  display: block;
+  height: 17px;
+  margin: 0 5px 0 0;
+  padding: 0;
+
+}
+
+.js-tag-name {
+background: #eeeeee;
+display: inline-block;
+height: 30px;
+line-height: 30px;
+padding: 0px 10px 0px 10px;
+text-decoration: none;
+text-align: center;
+vertical-align: middle;
+border-radius: 20px;
+} 
+
+.tags a.js-tag-name,
+.tags span.js-tag-name {
+  color: #4d4d4d;
+  text-decoration: none;
+  font-size:13px;
+  font-weight:500;
+}
+
 iframe {
   border: none;
 }
@@ -152,13 +240,13 @@ p {
   margin-bottom: 6px;
 }
 a {
-  color: #1b79bd;
+  color: #4d4d4d;
   text-decoration: none;
   cursor: pointer;
 }
 h2 {
-  font-size: 21px;
-  padding: 3px 0 3px 5px;
+  font-size: 20px;
+  /* padding: 3px 0 3px 5px; */
 }
 h3 {
   font-size: 19px;
@@ -189,7 +277,7 @@ pre {
   background-color: #F5F5F5;
   padding-left: 5px;
   padding-top: 5px;
-  padding-bottom: 20px ! ie7;
+  padding-bottom: 20px !ie7;
 }
 code {
   font-family: Consolas, Monaco, Liberation Mono, Lucida Console, Monospace;
@@ -209,12 +297,14 @@ html {
 * html .paginator {
   height: 1;
   overflow: visible;
+
 }
- + html .clearfix,
- + html .paginator {
+  html .clearfix,
+ html .paginator {
   min-height: 1%;
 }
 .clearfix:after,
+
 .paginator:after {
   clear: both;
   content: ".";
@@ -368,12 +458,45 @@ body.user-messages {
   background: #16160f;
   font-family: 'Open Sans Condensed', Arial, sans-serif;
 }
+
+
 .content-wrapper {
   /* wrapper positioning class */
   width: 960px;
   margin: auto;
   position: relative;
-}
+ 
+  }
+
+  .content-wrapper.footer{
+    background:#FFFFFF;
+    padding:20px 0px 20px 0px;     
+    height: 30px; 
+    display: flex;    
+    margin-top: 35em;
+    justify-content: space-between;
+    border-bottom: 1px solid #EEEEEE;
+  }
+   
+  .copyright {
+    font-family: Arial;
+    font-size: 10px !important;
+    display:flex;
+    color: #4D4D4D;
+    height:30px;  
+    display: flex;   
+  }
+  .copyright a {
+    color:#4D4D4D ;
+  }
+  .right-space{  
+    margin-right: 30px;
+   }
+   .copyright a:hover {
+    color: #4d4d4d;
+  } 
+  
+
 #logo img {
   padding: 5px 0px 5px 0px;
   height: 75px;
@@ -1065,12 +1188,12 @@ body.anon.ask-page .search-drop-menu {
 .box p.info-box-follow-up-links {
   text-align: right;
   margin: 0;
-}
+ }
 .box h2 {
-  padding-left: 0;
+   padding-left: 0;
   background: #eceeeb;
   line-height: 30px;
-  text-align: right;
+  text-align: left;
   font-size: 18px !important;
   font-weight: normal;
   color: #656565;
@@ -1079,6 +1202,7 @@ body.anon.ask-page .search-drop-menu {
   font-family: 'Open Sans Condensed', Arial, sans-serif;
   width: 190px;
 }
+
 .box h3 {
   color: #4a757f;
   font-size: 18px;
@@ -1086,9 +1210,6 @@ body.anon.ask-page .search-drop-menu {
   font-weight: normal;
   font-family: 'Open Sans Condensed', Arial, sans-serif;
   padding-left: 0px;
-}
-.box .contributorback {
-  background: #eceeeb url(../images/contributorsback.png) no-repeat center left;
 }
 .box form {
   margin: 0px;
@@ -1368,55 +1489,85 @@ ul#searchTags {
   padding: 0;
   width: 100%;
 }
+
 .short-summary {
   position: relative;
   filter: inherit;
-  padding: 10px 0 3px 0;
-  border-bottom: 1px solid #DDDBCE;
-  margin-bottom: 1px;
+  padding: 30px 0 30px 0;
+  border-bottom: 1px solid #EEEEEE;
   overflow: hidden;
   width: 733px;
   float: left;
-  /*background: url(../images/summary-background.png) repeat-x;*/
+  color:231e28;
+ }
+.question{
+  width:420px;
+  overflow: hidden;
+  float: left;
 }
-.short-summary h2 {
-  font-size: 20px;
-  font-weight: normal;
-  line-height: 26px;
+.question-row  {
+  overflow: hidden;
+}
+.question h2 a{  
+  font-size: 20px ;
+  font-weight: 500;
+  line-height: 24px;
   padding-left: 0;
-  margin-bottom: 7px;
   display: block;
-  font-family: 'Open Sans Condensed', Arial, sans-serif;
+  font-family:  Arial ;
+  color:#231e28;
+  margin-right: 50px;
+  width:420px;  
 }
-.short-summary a {
-  color: #464646;
+
+.short-summary a { 
+  font-size: 20px;
+  color: #4d4d4d;
 }
 .short-summary .userinfo {
   text-align: right;
   line-height: 16px;
   font-family: Arial;
-  padding-right: 4px;
+  display:inline-block;
+  float: right;
+  width:250px;
+  margin-top:20px ;  
 }
+
+.userinfo a:hover{  
+  color: #fd5f07 !important; 
+  text-decoration: underline;
+ }
+
 .short-summary .userinfo .timeago,
 .short-summary span.anonymous {
-  font-size: 11px;
-  clear: both;
   font-weight: normal;
-  color: #555;
+  color: #999999; 
+}
+.userinfo abbr.timeago{
+  display: inline-block;
+  float: none;
+  padding-top: 8px;
+}
+
+.short-summary span.anonymous {
+  font-size: 14px; 
+  font-weight: normal;
+  color: #999999;
 }
 .short-summary .userinfo a {
-  font-weight: bold;
-  font-size: 11px;
+  font-weight: 500;
+  font-size: 14px; 
+  color:#fd5f07;
 }
 .short-summary .counts {
-  float: right;
-  margin: 4px 0 0 5px;
-  font-family: 'Open Sans Condensed', Arial, sans-serif;
+  display: inline-block;
+  float: right;  
 }
 .short-summary .counts .item-count {
-  padding: 0px 5px 0px 5px;
-  font-size: 25px;
-  font-family: 'Open Sans Condensed', Arial, sans-serif;
+  padding: 0px 3px 0px 0px;
+  font-size: 14px;
+  font-family:  Arial ;
 }
 .short-summary .counts .votes div,
 .short-summary .counts .views div,
@@ -1425,49 +1576,45 @@ ul#searchTags {
   margin-top: 3px;
   font-size: 14px;
   line-height: 14px;
-  color: #646464;
-}
+ }
 .short-summary .tags {
-  margin: 0 0 0 1px;
+  margin: 20px 0 0 0px;
 }
 .short-summary .votes,
 .short-summary .answers,
 .short-summary .favorites,
 .short-summary .views {
-  text-align: center;
-  margin: 0 3px;
-  padding: 8px 2px 0px 2px;
-  width: 51px;
+  text-align: right;
+  margin: 0 0 0 20px;
   float: right;
-  height: 44px;
-  border: #dbdbd4 1px solid;
+  width: 80px;
+  padding-top: 6px;
 }
-.short-summary .votes {
-  background: url(../images/vote-background.png) repeat-x;
-}
+
 .short-summary .answers {
-  background: url(../images/answers-background.png) repeat-x;
-}
-.short-summary .views {
-  background: url(../images/view-background.png) repeat-x;
+  color:#64a65d;
+} 
+
+.short-summary .no-answers  {
+  color: #4D4D4D;
 }
 .short-summary .no-votes .item-count {
-  color: #b1b5b6;
+  color: #4d4d4d;
 }
 .short-summary .some-votes .item-count {
-  color: #4a757f;
+  color: #4D4D4D;
 }
 .short-summary .no-answers .item-count {
-  color: #b1b5b6;
+  color: #4D4D4D;
 }
 .short-summary .some-answers .item-count {
-  color: #eab243;
+  color: #64a65d;
 }
 .short-summary .no-views .item-count {
-  color: #b1b5b6;
+  color: #4D4D4D;
 }
 .short-summary .some-views .item-count {
-  color: #d33f00;
+  color: #4d4d4d;
 }
 .short-summary .accepted .item-count {
   background: url(../images/accept.png) no-repeat top right;
@@ -1484,6 +1631,7 @@ ul#searchTags {
   background: #eab243;
   color: yellow;
 }
+
 /* ----- Question list Paginator , check main_content/pager.html and macros/utils_macros.html----- */
 .evenMore {
   font-size: 13px;
@@ -1639,12 +1787,7 @@ ul.js-related-tags li {
   float: left;
   clear: left;
 }
-.js-tag {
-  display: block;
-  height: 17px;
-  margin: 0 5px 0 0;
-  padding: 0;
-}
+
 .js-tag .js-delete-icon {
   -webkit-box-shadow: 0px 0px 5px #d3d6d7;
   -moz-box-shadow: 0px 0px 5px #d3d6d7;
@@ -1667,39 +1810,15 @@ ul.js-related-tags li {
   padding-left: 4px;
   vertical-align: text-top;
 }
-.js-tag-name {
-  cursor: pointer;
-  background: #f3f6f6;
-  border: #fff 1px solid ;
-  border-top: #fff 2px solid;
-  outline: #cfdbdb 1px solid !important;
-  -webkit-box-shadow: 0px 0px 5px #d3d6d7;
-  -moz-box-shadow: 0px 0px 5px #d3d6d7;
-  box-shadow: 0px 0px 5px #d3d6d7;
-  display: inline-block;
-  height: 17px;
-  line-height: 17px;
-  font-weight: normal;
-  font-size: 11px;
-  padding: 0px 8px 0px 8px;
-  text-decoration: none;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  font-family: Arial;
-  color: #717179;
-}
+
 .js-deletable-tag {
   margin-right: 3px;
   white-space: nowrap;
 }
-.tags a.js-tag-name,
-.tags span.js-tag-name {
-  color: #585858;
-  text-decoration: none;
-}
+
+
 .tags a:hover {
-  color: #1A1A1A;
+  color: #4d4d4d;
 }
 .users-page th,
 .tags-page th,
@@ -1815,9 +1934,9 @@ ul.js-related-tags li {
 /* ----- Ask and Edit Question Form template----- */
 .section-title {
   color: #7ea9b3;
-  font-family: 'Open Sans Condensed', Arial, sans-serif;
+  font-family: Arial;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
 }
 .js-ask-form {
   margin-bottom: 30px;
@@ -2183,7 +2302,7 @@ a.js-question-body-trigger {
   cursor: pointer;
   background: #cce6ec;
   display: inline-block;
-  float: left;
+  float: none;
   padding: 0 8px 0 5px;
   margin: 0 0 -25px 0;
   border-top: 3px solid #cecece;
@@ -2754,7 +2873,7 @@ tr.mceLast {
   width: auto;
   vertical-align: top;
   font-family: Arial;
-  float: right;
+  float: none;
   text-align: right;
 }
 .question-page .comments .comment {
@@ -3776,52 +3895,8 @@ body.main-page ins {
   font-weight: bold;
 }
 /* ----- Footer links , check blocks/footer.html----- */
-#ground {
-  width: 100%;
-  color: white;
-  clear: both;
-  border-top: 1px solid #000;
-  padding: 16px 0 0 0;
-  background: #16160f;
-  font-size: 16px;
-  font-family: 'Open Sans Condensed', Arial, sans-serif;
-}
-#ground a:hover {
-  color: #ebff88;
-}
-#ground p {
-  margin-bottom: 0;
-}
-.footer-links {
-  color: #EEE;
-  text-align: left;
-  width: 450px;
-  float: left;
-}
-.footer-links a {
-  color: #e7e8a8;
-}
-.powered-link {
-  width: 450px;
-  float: left;
-  text-align: left;
-}
-.powered-link a {
-  color: #8ebcc7;
-}
-.copyright {
-  color: #616161;
-  width: 500px;
-  float: right;
-  text-align: right;
-}
-.copyright a {
-  color: #8ebcc7;
-}
-.copyright img.license-logo {
-  margin: 6px 0px 20px 10px;
-  float: right;
-}
+
+
 .notify-me {
   float: left;
 }
@@ -4166,6 +4241,7 @@ button::-moz-focus-inner {
   background-color: #fff380;
   /* nice yellow */
   font-weight: normal;
+  border-radius: 5px;
   -moz-border-radius: 5px;
   -khtml-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -4701,7 +4777,7 @@ textarea.tipped-input {
   border: none;
   box-shadow: none;
   font-size: 14px;
-  font-color: #707070;
+ color: #707070;
   height: 16px;
   line-height: 16px;
   margin: 9px 0 0 -6px;
@@ -4971,9 +5047,7 @@ td.setting-input textarea {
   .question-page .vote-buttons {
     margin-right: 2px;
   }
-  .js-tag-name {
-    height: 20px;
-  }
+  
   .question-page .comments .comment-controls {
     padding-left: 8px;
   }
@@ -5010,6 +5084,8 @@ td.setting-input textarea {
   .content-wrapper {
     width: 100%;
   }
+
+ 
   #ContentRight {
     display: none;
   }
@@ -5105,11 +5181,9 @@ td.setting-input textarea {
   .question-page .post-update-info .badge-count {
     display: none;
   }
-  .footer-links,
-  .powered-link {
-    text-align: center;
-    width: 100%;
-  }
+ 
+
+
   #metaNav {
     float: left;
     margin-left: 8px;

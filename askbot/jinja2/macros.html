@@ -285,7 +285,7 @@
             class="js-tag-name{% if css_class %} {{ css_class }}{% endif %}"
             rel="tag"
             {% if is_link and not tag.endswith('*') %}
-            href="{{ search_state.add_tag(tag).full_url() }}"
+            href="{{ search_state.add_tag(tag).full_url() }}" 
             {% endif %}
             data-tag-name="{{ tag|escape }}"
         >{% if truncate_long_tag -%}
@@ -497,7 +497,8 @@ for the purposes of the AJAX comment editor #}
            class="off"
            title="{{desc_tooltip}}"><span>{{label}}</span></a>
     {% endif %}
-    <script type="text/javascript">{# need to pass on text translations to js #}
+    {# need to pass on text translations to js #}
+    <script type="text/javascript">
         askbot['data']['sortButtonData'] = askbot['data']['sortButtonData'] || {};
         askbot['data']['sortButtonData']['{{key_name}}'] = {
             label: '{{label}}',
