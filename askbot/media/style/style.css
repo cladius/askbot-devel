@@ -1211,9 +1211,6 @@ body.anon.ask-page .search-drop-menu {
   font-family: 'Open Sans Condensed', Arial, sans-serif;
   padding-left: 0px;
 }
-.box .contributorback {
-  background: #eceeeb url(../images/contributorsback.png) no-repeat center left;
-}
 .box form {
   margin: 0px;
 }
@@ -1503,19 +1500,15 @@ ul#searchTags {
   float: left;
   color:231e28;
  }
-
 .question{
   width:420px;
   overflow: hidden;
   float: left;
 }
-
 .question-row  {
   overflow: hidden;
 }
-
-.question h2 a{
-  
+.question h2 a{  
   font-size: 20px ;
   font-weight: 500;
   line-height: 24px;
@@ -1524,12 +1517,10 @@ ul#searchTags {
   font-family:  Arial ;
   color:#231e28;
   margin-right: 50px;
-  width:420px;
-  float: left;
+  width:420px;  
 }
 
-.short-summary a {
- 
+.short-summary a { 
   font-size: 20px;
   color: #4d4d4d;
 }
@@ -1540,26 +1531,23 @@ ul#searchTags {
   display:inline-block;
   float: right;
   width:250px;
-  margin-top:20px ;
-     
+  margin-top:20px ;  
 }
 
 .userinfo a:hover{  
-    color: #fd5f07 !important; 
-    text-decoration: underline;
+  color: #fd5f07 !important; 
+  text-decoration: underline;
  }
 
 .short-summary .userinfo .timeago,
 .short-summary span.anonymous {
   font-weight: normal;
-  color: #999999;
- 
+  color: #999999; 
 }
 .userinfo abbr.timeago{
   display: inline-block;
   float: none;
   padding-top: 8px;
-
 }
 
 .short-summary span.anonymous {
@@ -1573,9 +1561,8 @@ ul#searchTags {
   color:#fd5f07;
 }
 .short-summary .counts {
-  font-family: Arial ;
   display: inline-block;
-  float: right;
+  float: right;  
 }
 .short-summary .counts .item-count {
   padding: 0px 3px 0px 0px;
@@ -1597,23 +1584,21 @@ ul#searchTags {
 .short-summary .answers,
 .short-summary .favorites,
 .short-summary .views {
-    text-align: right;
-    margin: 0 0 0 20px;
-    float: right;
-    width: 80px;
-    /* line-height: 24px; */
-    padding-top: 8px;
+  text-align: right;
+  margin: 0 0 0 20px;
+  float: right;
+  width: 80px;
+  padding-top: 6px;
 }
 
 .short-summary .answers {
   color:#64a65d;
-}  
+} 
+
 .short-summary .no-answers  {
   color: #4D4D4D;
 }
-
 .short-summary .no-votes .item-count {
-
   color: #4d4d4d;
 }
 .short-summary .some-votes .item-count {

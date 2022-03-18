@@ -2,8 +2,6 @@
 <div class="short-summary{% if extra_class %} {{extra_class}}{% endif %}" id="question-{{question.id}}">
     <div class="question-row">
         <div class="question">
-
-
             <h2><a href="{{ question.get_absolute_url(thread=thread) }}">{{thread.get_title()|escape}}</a></h2>
         </div>
         <div class="counts">
@@ -21,7 +19,7 @@
             <div class="answers
                 {% if answer_count == 0 -%}
                     no-answers
-                {% else -%}
+                    {% else -%}
                     {%- if thread.accepted_answer_id -%}  {# INFO: Use _id to not fetch the whole answer post #}
                         accepted
                     {%- else -%}
@@ -35,22 +33,19 @@
 
             </div>
             <div class="votes
-                    {% if question.score == 0 -%}
+                {% if question.score == 0 -%}
                         no-votes
                     {% else -%}
                         some-votes
-                    {%- endif -%}">
+                {%- endif -%}">
                 <span class="item-count">{{question.score|humanize_counter}}</span>
 
                 {% trans cnt=question.score %}vote{% pluralize %}votes{% endtrans %}
-
             </div>
         </div>
     </div>
-
     <div>
         <div class="userinfo">
-
             {{ timeago(thread.last_activity_at) }}
             {% set latest_revision = thread.get_latest_revision(user=visitor) %}
             {% if latest_revision and latest_revision.is_anonymous %}
