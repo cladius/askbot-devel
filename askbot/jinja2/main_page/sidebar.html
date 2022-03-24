@@ -19,10 +19,11 @@
 {% endif %}
 
 {% if tags and settings.SIDEBAR_MAIN_SHOW_TAGS %}
-<div class="box">
-    <h2>{% trans %}Tags{% endtrans %}</h2>
-    {% include "widgets/related_tags.html" %}
-</div>
+<div class="box_tag">
+    <h2>{% trans %}Tags{% endtrans %}
+        <a href="/tags/" class="view_all_tag" >{% trans %}View all{% endtrans%}</a></h2>    
+        {% include "widgets/related_tags.html" %}
+    </div>
 {% endif %}
 
 {% if 'SIDEBAR_MAIN_FOOTER'|show_block_to(request.user) %}

@@ -1,11 +1,13 @@
 {# todo - maybe disable navigation from ignored tags here when "hide" is on - with js? #}
 {% import "macros.html" as macros %}
 <div id="tagSelector" class="box">
-    <h2>{% trans %}Interesting tags{% endtrans %}</h2>
+    <div class="box_tag">
+    <h2>{% trans %}Interesting tags{% endtrans %} <input id="interestingTagAdd" type="submit" class="tagAdd" value="{% trans %}Add{% endtrans %}"/></h2>
+    <div class="tags_enter">
     {{
         macros.tag_list_widget(
             interesting_tag_names,
-            deletable = True,
+            deletable = true,
             css_class = 'interesting marked-tags',
             search_state = search_state
         )
@@ -14,16 +16,25 @@
         "remove '%(tag_name)s' from the list of interesting tags"|
         format(tag_name = tag_name)
     #}
-    <div class="clearfix"></div>
-    <div class="inputs">
-        <input id="interestingTagInput" autocomplete="off" type="text"/>
-        <input id="interestingTagAdd" type="submit" value="{% trans %}add{% endtrans %}"/>
     </div>
-    <h2>{% trans %}Ignored tags{% endtrans %}</h2>
+    <div class="clean"></div>     
+    <div class="tags_toggle">
+        <div class="switch">
+            <input type="checkbox" id="interesting_tag" value="2" class="switch-input" onclick="check_tag_interesting()">
+            <label for="interesting_tag" class="switch-label">Only interesting tags</label>
+         </div>  
+         <span>Only interesting tags</span>         
+    </div>
+ </div>
+<!--ignored tags-->
+<div class="box_tag">
+    <h2>{% trans %}Ignored tags{% endtrans %} 
+    <input id="ignoredTagAdd" class="tagAdd" type="submit" value="{% trans %}Add{% endtrans%}"/></h2>
+     <div class="tags_enter"> 
     {{
         macros.tag_list_widget(
             ignored_tag_names,
-            deletable = True,
+            deletable = true,
             css_class = 'ignored marked-tags',
             search_state = search_state
         )
@@ -32,16 +43,62 @@
         "remove '%(tag_name)s' from the list of ignored tags"|
         format(tag_name = tag_name)
     #}
-    <div class="inputs">
-        <input id="ignoredTagInput" autocomplete="off" type="text"/>
-        <input id="ignoredTagAdd" type="submit" value="{% trans %}add{% endtrans%}"/>
-    </div>
+</div> 
+<div class="clearfix"></div>
+    <div class="tags_toggle" >
+        <div class="switch">
+            <input type="checkbox" id="ignore_tag" value="1" class="switch-input" onclick="check_tag_ignored()">
+            <label for="ignore_tag" class="switch-label">Exclude ignored tag</label>
+         </div>  
+         <span>Exclude ignored tag</span>         
+    </div>          
+</div>
+
+<script type="text/javascript">
+function check_tag_ignored(){
+    var checkBox = document.getElementById("ignore_tag");
+    var checkBox1 = document.getElementById("interesting_tag");
+
+    if(checkBox.checked){
+        if(checkBox1.checked){
+              checkBox1.checked = false;
+        }else{
+            console.log("interesting is already off");
+        }
+     }else {
+        console.log("both off");
+        document.getElementById("ignore_tag").value=0;        
+    }
+}
+function check_tag_interesting(){
+
+    var checkBox = document.getElementById("ignore_tag");
+    var checkBox1 = document.getElementById("interesting_tag");
+
+    if(checkBox1.checked){
+        console.log("checked interesting");
+        
+        if(checkBox.checked){
+            console.log("ignore_tag is on lets off");
+            checkBox.checked = false;
+        }else{
+            console.log("ignore_tag is already off");
+        }
+     }else {
+        document.getElementById("interesting_tag").value=0;
+        console.log("both off");           
+    }
+}
+</script>
+<div class="clearfix"></div>  
     {% if settings.SUBSCRIBED_TAG_SELECTOR_ENABLED %}
+    <div class="box_tag">
         <h2>{% trans %}Subscribed tags{% endtrans %}</h2>
+        <div class="tags_enter">
         {{
             macros.tag_list_widget(
                 subscribed_tag_names,
-                deletable = True,
+                deletable = False,
                 css_class = 'subscribed marked-tags',
                 search_state = search_state
             )
@@ -50,23 +107,16 @@
             "remove '%(tag_name)s' from the list of ignored tags"|
             format(tag_name = tag_name)
         #}
-        <div class="clearfix"></div>
+        </div>
         <div class="inputs">
             <input id="subscribedTagInput" autocomplete="off" type="text"/>
             <input id="subscribedTagAdd" type="submit" value="{% trans %}add{% endtrans%}"/>
         </div>
+    </div>  
     {% endif %}
-    <h3>{{ settings.WORDS_SHOW_ONLY_QUESTIONS_FROM|escape }}</h3>
-    <div id="displayTagFilterControl">
-        {{
-            macros.radio_select(
-                name = "display_tag_filter_strategy",
-                value = request.user.display_tag_filter_strategy,
-                choices = display_tag_filter_strategy_choices
-            )
-        }}
-    </div>
-    {% if settings.SUBSCRIBED_TAG_SELECTOR_ENABLED %}
+  
+
+        {% if settings.SUBSCRIBED_TAG_SELECTOR_ENABLED %} 
         <h3>{% trans %}Send me email alerts for{% endtrans%}</h3>
         <div id="emailTagFilterControl">
             {{
@@ -85,5 +135,5 @@
             </p>
             {% endif %}
         </div>
-    {% endif %}
+    {% endif %} 
 </div>

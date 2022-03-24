@@ -13,9 +13,11 @@
     {% include "main_page/custom_head_javascript.html" ignore missing %}
 {% endblock %}
 {% block title %}{% filter trim %}{% trans %}Questions{% endtrans %}{% endfilter %}{% endblock %}
-{% block content %}
-    {% include "main_page/tab_bar.html" %}
-    {% include "main_page/headline.html" %}
+
+{% block content %}       
+{% include "widgets/scope_nav.html" %}
+{% include "main_page/tab_bar.html" %}
+    {#% include "main_page/headline.html" %#}
     {# ==== BEGIN: main_page/content.html === #}
     <div id="question-list">
         {% include "main_page/questions_loop.html" %}
@@ -23,6 +25,7 @@
     {# ==== END: main_page/content.html === #}
     {% include "main_page/paginator.html" %}
 {% endblock %}
+
 {% block sidebar %}
     {% include "main_page/sidebar.html" %}
 {% endblock %}
@@ -30,9 +33,10 @@
     {{ macros.tag_widget('dummy', deletable=True) }}
 {% endblock %}
 {% block endjs %}
+{# cant cache this #}
+
     <script type="text/javascript">
-        {# cant cache this #}
-        askbot['settings']['showSortByRelevance'] = {{ show_sort_by_relevance|as_js_bool }};
+                askbot['settings']['showSortByRelevance'] = "{{ show_sort_by_relevance|as_js_bool }}";
     </script>
     {% include "main_page/javascript.html" %}
     {% include "main_page/custom_javascript.html" ignore missing %}

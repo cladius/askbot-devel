@@ -560,7 +560,7 @@ settings.register(
         FORUM_DATA_RULES,
         'DEFAULT_QUESTIONS_PAGE_SIZE',
         choices=const.PAGE_SIZE_CHOICES,
-        default='30',
+        default='7',
         description=_('Number of questions to list by default')
     )
 )

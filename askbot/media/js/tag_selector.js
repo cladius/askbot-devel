@@ -394,6 +394,51 @@ function pickedTags() {
         });
     };
 
+    var setupInterestingTagFilterControl = function (control_type) {
+        var checkboxButtons = $('#interesting_tag');
+         checkboxButtons.click(function () {
+            var clickedBtn = $(this);
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                url: askbot.urls.set_tag_filter_strategy,
+                data: {
+                    filter_type: control_type,
+                    filter_value: clickedBtn.val()
+                },
+                success: function () {
+                    clickedBtn.prop('checked', true).trigger('change'); // trigger other listeners on the radio
+                    askbot.controllers.fullTextSearch.refresh();
+                }
+            });
+            return false;
+        });
+    };
+
+    var setupIgnoredTagFilterControl = function (control_type) {
+        var checkboxButtons = $('#ignore_tag');
+         checkboxButtons.click(function () {
+            var clickedBtn = $(this);
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                url: askbot.urls.set_tag_filter_strategy,
+                data: {
+                    filter_type: control_type,
+                    filter_value: clickedBtn.val()
+                },
+                success: function () {
+                    clickedBtn.prop('checked', true).trigger('change'); // trigger other listeners on the radio
+                    askbot.controllers.fullTextSearch.refresh();
+                }
+            });
+            return false;
+        });
+    };
+
+
     var getResultCallback = function (reason) {
         return function () {
             handlePickedTag(reason);
@@ -407,6 +452,9 @@ function pickedTags() {
             collectPickedTags('subscribed');
             setupTagFilterControl('display');
             setupTagFilterControl('email');
+            setupInterestingTagFilterControl('display');
+            setupIgnoredTagFilterControl('display')
+            
             var ac = new AutoCompleter({
                 url: askbot.urls.get_tag_list,
                 minChars: 1,

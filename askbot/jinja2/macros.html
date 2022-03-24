@@ -293,10 +293,10 @@
             {%- else -%}
                 {{ tag|escape|replace('*', '&#10045;') }}
             {%- endif -%}
+            {% if deletable %}
+            <span class="js-delete-icon"> <img src='/m/default/media/images/close-tags-icon.svg' /></span>
+        {% endif %}       
         </{% if is_link %}a{% else %}span{% endif %}>
-        {% if deletable %}
-            <span class="js-delete-icon">&times;</span>
-        {% endif %}
         {% if extra_content %}
         <span class="js-tag-extra-content">{{ extra_content }}</span>
         {% endif %}
@@ -312,7 +312,7 @@
                 id="{{ id }}"
                 name="{{ name }}"
                 value="{{ choice[0] }}"
-                type="radio"
+                type="checkbox"
                 {% if value == choice[0] %}
                 checked="checked"
                 {% endif %}
@@ -321,6 +321,7 @@
         </p>
     {% endfor %}
 {%- endmacro -%}
+
 
 {%- macro question_summary(thread, question, extra_class=None, search_state=None, visitor = None) -%}
 {%include "widgets/question_summary.html" %}
@@ -485,19 +486,20 @@ for the purposes of the AJAX comment editor #}
         <a id="by_{{key_name}}"
            href="{{ search_state.change_sort(key_name+"-desc").full_url() }}"
            class="rev on"
-           title="{{desc_tooltip}}"><span>{{label}} &#9650;</span></a>
+           title="{{desc_tooltip}}"><span>{{label}}    &#x2193;</span></a>
     {% elif current_sort_method == key_name + "-desc" %}{# "best first" #}
         <a id="by_{{key_name}}"
            href="{{ search_state.change_sort(key_name+"-asc").full_url() }}"
            class="rev on"
-           title="{{asc_tooltip}}"><span>{{label}} &#9660;</span></a>
+           title="{{asc_tooltip}}"><span>{{label}}    &#x2191;</span></a>
     {% else %}{# default, when other button is active #}
         <a id="by_{{key_name}}"
            href="{{ search_state.change_sort(key_name+"-desc").full_url() }}"
            class="off"
            title="{{desc_tooltip}}"><span>{{label}}</span></a>
     {% endif %}
-    <script type="text/javascript">{# need to pass on text translations to js #}
+    {# need to pass on text translations to js #}
+    <script type="text/javascript">
         askbot['data']['sortButtonData'] = askbot['data']['sortButtonData'] || {};
         askbot['data']['sortButtonData']['{{key_name}}'] = {
             label: '{{label}}',
@@ -614,7 +616,7 @@ for the purposes of the AJAX comment editor #}
     {% if p.is_paginated %}
         <div
             class="paginator"
-            style="float:{{ position }}"
+            style="float:'{{ position }}'"
             data-num-pages="{{ p.pages }}"
         >
         <span class="prev"
@@ -680,37 +682,41 @@ for the purposes of the AJAX comment editor #}
 {%- macro paginator_main_page(p, position, search_state) -%} {# p is paginator context dictionary #}
     {% filter trim %}
         {% if p.is_paginated %}
-            <div class="paginator" style="float:{{position}}">
-                {% if p.has_previous %}
-                    <span class="prev"><a href="{{ search_state.change_page(p.previous).full_url() }}" title="{% trans %}previous{% endtrans %}">
-                        &laquo; {% trans %}previous{% endtrans %}</a></span>
-                {% endif %}
-                {% if not p.in_leading_range %}
-                    {% for num in p.pages_outside_trailing_range %}
-                        <span class="page"><a href="{{ search_state.change_page(num).full_url() }}" >{{ num }}</a></span>
-                    {% endfor %}
-                    ...
-                {% endif %}
-
-                {% for num in p.page_numbers %}
-                    {% if num == p.page and p.pages != 1%}
-                        <span class="curr page" title="{% trans %}current page{% endtrans %}"><a>{{ num }}</a></span>
-                    {% else %}
-                        <span class="page"><a href="{{ search_state.change_page(num).full_url() }}" title="{% trans %}page {{num}}{% endtrans %}">{{ num }}</a></span>
-                    {% endif %}
+        <div class="paginator">
+            <div class="paging">
+            {% if p.has_previous %}
+                <span class="prev"><a href="{{ search_state.change_page(p.previous).full_url() }}" title="{% trans %}previous{% endtrans %}">
+                    <img src='/m/default/media/images/pagination-previous-icon.svg' />
+                    </a> 
+                </span>
+            {% endif %}
+            {% if not p.in_leading_range %}
+                {% for num in p.pages_outside_trailing_range %}
+                    <span class="page"><a href="{{ search_state.change_page(num).full_url() }}" >{{ num }}</a></span>
                 {% endfor %}
+                ...
+            {% endif %}
 
-                {% if not p.in_trailing_range %}
-                    ...
-                    {% for num in p.pages_outside_leading_range|reverse %}
-                        <span class="page"><a href="{{ search_state.change_page(num).full_url() }}" title="{% trans %}page {{ num }}{% endtrans %}">{{ num }}</a></span>
-                    {% endfor %}
+            {% for num in p.page_numbers %}
+                {% if num == p.page and p.pages != 1%}
+                    <span class="curr page" title="{% trans %}current page{% endtrans %}"><a>{{ num }}</a></span>
+                {% else %}
+                    <span class="page"><a href="{{ search_state.change_page(num).full_url() }}" title="{% trans %}page {{num}}{% endtrans %}">{{ num }}</a></span>
                 {% endif %}
-                {% if p.has_next %}
-                    <span class="next"><a href="{{ search_state.change_page(p.next).full_url() }}" title="{% trans %}next page{% endtrans %}">{% trans %}next page{% endtrans %} &raquo;</a></span>
-                {% endif %}
-            </div>
-        {% endif %}
+            {% endfor %}
+
+            {% if not p.in_trailing_range %}
+                ...
+                {% for num in p.pages_outside_leading_range|reverse %}
+                    <span class="page"><a href="{{ search_state.change_page(num).full_url() }}" title="{% trans %}page {{ num }}{% endtrans %}">{{ num }}</a></span>
+                {% endfor %}
+            {% endif %}
+            {% if p.has_next %}
+                <span class="next"><a href="{{ search_state.change_page(p.next).full_url() }}" title="{% trans %}next page{% endtrans %}"><img src='/m/default/media/images/pagination-next-icon.svg' /></a></span>
+            {% endif %}
+        </div>
+        </div>
+{% endif %}
     {% endfilter %}
 {%- endmacro -%}
 

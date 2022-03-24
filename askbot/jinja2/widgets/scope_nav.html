@@ -1,26 +1,23 @@
-<div id="scopeNav">
-{% if need_scope_links %}
+<div id="scopeNav" >
+    <span class="filter-icon" ><img src="/m/default/media/images/filter-by-icon.svg">Filter by 
+        <img src="/m/default/media/images/arrow-right-icon.svg" ></span>
+        
+<div class="filter-list">
+    {% if need_scope_links %}
     {% if active_tab != "ask" %}
         {% if not search_state %}  {#  get empty SearchState() if there's none #}
             {% set search_state=search_state|get_empty_search_state %}
         {% endif %}
         {% if settings.ALL_SCOPE_ENABLED %}
-        <a class="scope-selector {% if scope == 'all' %}on{% endif %}"
-            href="{{ search_state.change_scope('all').full_url() }}"
-        >{% trans %}ALL{% endtrans %}</a>
+        <input type="radio" class="filter" name="filterBy" value="all"  {% if scope == 'all' %}checked{% endif %} />{% trans %}All questions{% endtrans %} 
         {% endif %}
         {% if settings.UNANSWERED_SCOPE_ENABLED %}
-        <a class="scope-selector {% if scope == 'unanswered' %}on{% endif %}"
-            href="{{ search_state.change_scope('unanswered').change_sort('answers-asc').full_url() }}"
-        >{{ settings.WORDS_UNANSWERED|escape }}</a>
-        {% endif %}
+        <input type="radio" class="filter" name="filterBy" value="unanswered" {% if scope == 'unanswered' %}checked{% endif %} />{% trans %}Unanswered{% endtrans %} {% endif %}
         {% if request.user.is_authenticated and settings.FOLLOWED_SCOPE_ENABLED %}
-        <a class="scope-selector {% if scope == 'followed' %}on{% endif %}"
-            href="{{ search_state.change_scope('followed').full_url() }}"
-        >{% trans %}FOLLOWED{% endtrans %}</a>
-        {% endif %}
+        <input type="radio" class="filter" name="filterBy" value="followed" {% if scope == 'followed' %}checked{% endif %} />{% trans %}Followed{% endtrans %}{% endif %}
     {% else %}
     <div class="scope-selector ask-message">{{ settings.WORDS_PLEASE_ASK_YOUR_QUESTION_HERE|escape }}</div>
     {% endif %}
 {% endif %}
+</div>
 </div>

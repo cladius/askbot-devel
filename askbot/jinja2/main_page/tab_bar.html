@@ -1,30 +1,29 @@
 {% import "macros.html" as macros %}
 {% cache 0 "scope_sort_tabs" search_tags request.user author_name scope sort query context.page language_code %}
-{% if settings.RSS_ENABLED %}
-<a class="rss" href="{{ feed_url }}"
-    title="{% trans %}subscribe to the feed{% endtrans %}"
-    >{% trans %}RSS{% endtrans %}
-</a>
-{% endif %}
-<div class="tabBar">
-    <div id="sort_tabs" class="tabsA">
-        <span class="label">{% trans %}Sort by &raquo;{% endtrans %}</span>
-        {% if show_sort_by_relevance %}
+<div class="tab-sort-by" > 
+    <div id="sort_tabs"  class="tabsA sort-tab">
+        <div class="sort-icon">
+            <img src="/m/default/media/images/sort-by-icon.svg">
+            {% trans %}Sort by {% endtrans %}
+            <img class="sort-right-arrow" src="/m/default/media/images/arrow-right-icon.svg">
+        </div>
+        <div class="sort-type">
+            {% if show_sort_by_relevance %}
             {% set asc_relevance_tooltip = gettext('most relevant questions') %}
             {% set desc_relevance_tooltip = gettext('click to see most relevant questions') %}
             {% set relevance_label = gettext('relevance') %}
-            {% if query %}
-            <a id="by_relevance"
-                {% if sort == "relevance-desc" %}
-                    href="{{ search_state.change_sort('relevance-desc').full_url() }}"
-                    class="on"
-                    title="{{asc_relevance_tooltip}}"><span>{{relevance_label}} &#9660;</span>
+             {% if query %}
+            <a id="by_relevance" {% if sort=="relevance-desc" %}
+                href="{{ search_state.change_sort('relevance-desc').full_url() }}" class="on"
+                title="{{asc_relevance_tooltip}}"><span>{{relevance_label}} &#x2195;
+                </span>
                 {% else %}
-                    href="{{ search_state.change_sort('relevance-desc').full_url() }}"
-                    class="off"
-                    title="{{desc_relevance_tooltip}}"><span>{{relevance_label}}</span>
+                href="{{ search_state.change_sort('relevance-desc').full_url() }}"
+                class="off"
+                title="{{desc_relevance_tooltip}}"><span>{{relevance_label}} &#x2193;
+                </span>
                 {% endif %}
-            </a>
+            </a> 
             {% endif %}
             <script type="text/javascript">
                 askbot['data']['sortButtonData'] = askbot['data']['sortButtonData'] || {};
@@ -34,7 +33,7 @@
                     label: "{{relevance_label}}"
                 };
             </script>
-        {% endif %}
+            {% endif %}
         {{ macros.reversible_sort_button(
                 button_sort_criterium = 'age',
                 label = gettext('by date'),
@@ -73,5 +72,5 @@
         }}
     </div>
 </div>
-
+</div>
 {% endcache %}

@@ -3,12 +3,13 @@
         {% set search_state=search_state|get_empty_search_state %}
     {% endif %}
     <a
-        id="askButton"
-        class="button"
+        id="askButton"        
         href="{{ search_state.full_ask_url() }}{% if group %}{% if '?' in search_state.full_ask_url() %}&amp;{% else %}?{% endif %}group_id={{ group.id }}{% endif %}"
-        >{% if group %}
+        >
+        <button name="ask_button" class="primary">{% if group %}
             {{ settings.WORDS_ASK_THE_GROUP|escape }}
         {% else %}
             {{ settings.WORDS_ASK_YOUR_QUESTION|escape }}
-        {% endif %}</a>
+        {% endif %}</button>        
+        </a>
 {% endif %}

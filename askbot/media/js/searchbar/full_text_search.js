@@ -379,7 +379,7 @@ FullTextSearch.prototype.setActiveSortTab = function (sort_method, query_string)
     var name = bits[0];
     var sense = bits[1];//sense of sort
     var antisense = (sense === 'asc' ? 'desc' : 'asc');
-    var arrow = (sense === 'asc' ? ' &#9650;' : ' &#9660;');
+    var arrow = (sense === 'asc' ? '   &#x2193;' : '   &#x2191;');
     var active_tab = $('#by_' + name);
     active_tab.attr('class', 'on');
     active_tab.attr(
