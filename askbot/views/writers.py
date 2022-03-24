@@ -819,10 +819,6 @@ def post_comments(request):#generic ajax handler to load comments to an object
                 message = _('Spam was detected on your post, sorry if it was a mistake')
                 raise exceptions.PermissionDenied(message)
 
-            from re import search
-            if search("<|>", text):
-                raise exceptions.PermissionDenied("tags are not allowed in comments")
-
             comment = user.post_comment(
                 parent_post=post,
                 body_text=text,
