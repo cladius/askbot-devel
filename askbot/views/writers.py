@@ -195,6 +195,11 @@ def import_data(request):
     }
     return render(request, 'import_data.html', data)
 
+from ratelimit import limits
+ONE_MINUTE = 60  #seconds
+
+
+@limits(calls=5, period=ONE_MINUTE)
 @csrf.csrf_protect
 @decorators.check_authorization_to_post(ugettext_lazy('Please log in to make posts'))
 def ask(request):#view used to ask a new question
@@ -750,6 +755,11 @@ def __generate_comments_json(obj, user, avatar_size):
     data = json.dumps(json_comments)
     return HttpResponse(data, content_type="application/json")
 
+from ratelimit import limits
+ONE_MINUTE = 60  #seconds
+
+
+@limits(calls=5, period=ONE_MINUTE)
 @csrf.csrf_protect
 def post_comments(request):#generic ajax handler to load comments to an object
     """todo: fixme: post_comments is ambigous:

@@ -682,7 +682,7 @@ class ChangeUserReputationForm(forms.Form):
     to adjust reputation of users.
 
     this form internally verifies that user who claims to
-    be a moderator acually is
+    be a moderator actually is
     """
 
     user_reputation_delta = forms.IntegerField(
@@ -691,11 +691,12 @@ class ChangeUserReputationForm(forms.Form):
     comment = forms.CharField(label=_('Comment'), max_length=128)
 
     def clean_comment(self):
+        from re import search
         if 'comment' in self.cleaned_data:
             comment = self.cleaned_data['comment'].strip()
-            if comment == '':
+            if comment == '' or search("<|>", comment):
                 del self.cleaned_data['comment']
-                raise forms.ValidationError('Please enter non-empty comment')
+                raise forms.ValidationError('<> are not allowed in comment')
             self.cleaned_data['comment'] = comment
             return comment
 

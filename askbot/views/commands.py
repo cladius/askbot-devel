@@ -838,6 +838,11 @@ def upvote_comment(request):
     #FIXME: rename js
     return {'score': comment.points}
 
+from ratelimit import limits
+ONE_MINUTE = 60  #seconds
+
+
+@limits(calls=5, period=ONE_MINUTE)
 @csrf.csrf_protect
 @decorators.ajax_only
 @decorators.post_only
