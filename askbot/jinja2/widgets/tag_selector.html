@@ -2,8 +2,15 @@
 {% import "macros.html" as macros %}
 <div id="tagSelector" class="box">
     <div class="box_tag">
-    <h2>{% trans %}Interesting tags{% endtrans %} <input id="interestingTagAdd" type="submit" class="tagAdd" value="{% trans %}Add{% endtrans %}"/></h2>
-    <div class="tags_enter">
+    <h2>{% trans %}Interesting tags{% endtrans %} 
+        <input id="interesting_Tag_Add" type="submit" class="tagAdd" value="{% trans %}Add{% endtrans %}"/></h2>
+    
+        <div id="add_interesting_div" style="display:none;">
+           <input id="interestingTagInput" placeholder="Add tags here" autocomplete="off" type="text"/>
+           <input id="interestingTagAdd" type="submit" value="{% trans %}Add{% endtrans %}"/><input id="interestingTagCancel" type="button" value="{% trans %}Cancel{% endtrans %}" />
+        </div>    
+
+    <div class="tags_enter" id="tags_enter_interesting">
     {{
         macros.tag_list_widget(
             interesting_tag_names,
@@ -20,17 +27,21 @@
     <div class="clean"></div>     
     <div class="tags_toggle">
         <div class="switch">
-            <input type="checkbox" id="interesting_tag" value="2" class="switch-input" onclick="check_tag_interesting()">
-            <label for="interesting_tag" class="switch-label">Only interesting tags</label>
+             <input type="checkbox" id="interesting_tag" value="2" class="switch-input"> 
+             <label for="interesting_tag" id="inter_switch" class="switch-label"></label>
          </div>  
          <span>Only interesting tags</span>         
     </div>
  </div>
-<!--ignored tags-->
+
 <div class="box_tag">
     <h2>{% trans %}Ignored tags{% endtrans %} 
-    <input id="ignoredTagAdd" class="tagAdd" type="submit" value="{% trans %}Add{% endtrans%}"/></h2>
-     <div class="tags_enter"> 
+    <input id="ignored_Tag_Add" class="tagAdd" type="submit" value="{% trans %}Add{% endtrans%}" /></h2>
+    <div id="add_ignored_div" style="display: none;">
+        <input id="ignoredTagInput" placeholder="Add tags here" autocomplete="off" type="text"/>
+        <input id="ignoredTagAdd" type="submit" value="{% trans %}Add{% endtrans%}"/><input id="ignoredTagCancel" autofocus="true" type="button" value="{% trans %}Cancel{% endtrans %}"/>
+    </div>
+     <div class="tags_enter" id="tags_enter_ignore"> 
     {{
         macros.tag_list_widget(
             ignored_tag_names,
@@ -47,49 +58,12 @@
 <div class="clearfix"></div>
     <div class="tags_toggle" >
         <div class="switch">
-            <input type="checkbox" id="ignore_tag" value="1" class="switch-input" onclick="check_tag_ignored()">
-            <label for="ignore_tag" class="switch-label">Exclude ignored tag</label>
+           <input type="checkbox" id="ignore_tag" value="1" class="switch-input" > 
+            <label for="ignore_tag" class="switch-label"></label>
          </div>  
-         <span>Exclude ignored tag</span>         
+         <span>Exclude ignored tags</span>         
     </div>          
 </div>
-
-<script type="text/javascript">
-function check_tag_ignored(){
-    var checkBox = document.getElementById("ignore_tag");
-    var checkBox1 = document.getElementById("interesting_tag");
-
-    if(checkBox.checked){
-        if(checkBox1.checked){
-              checkBox1.checked = false;
-        }else{
-            console.log("interesting is already off");
-        }
-     }else {
-        console.log("both off");
-        document.getElementById("ignore_tag").value=0;        
-    }
-}
-function check_tag_interesting(){
-
-    var checkBox = document.getElementById("ignore_tag");
-    var checkBox1 = document.getElementById("interesting_tag");
-
-    if(checkBox1.checked){
-        console.log("checked interesting");
-        
-        if(checkBox.checked){
-            console.log("ignore_tag is on lets off");
-            checkBox.checked = false;
-        }else{
-            console.log("ignore_tag is already off");
-        }
-     }else {
-        document.getElementById("interesting_tag").value=0;
-        console.log("both off");           
-    }
-}
-</script>
 <div class="clearfix"></div>  
     {% if settings.SUBSCRIBED_TAG_SELECTOR_ENABLED %}
     <div class="box_tag">

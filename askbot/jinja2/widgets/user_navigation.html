@@ -1,9 +1,8 @@
 {%- if request.user.is_authenticated -%}
 {% if settings.USE_ASKBOT_LOGIN_SYSTEM %}
 <div class="user-info notification">
-      <div class="circle user-bg">
-         <img src="/m/default/media/images/user-icon.svg"  title="{{ request.user.username|escape }}" 
-         onclick="toggle_dropdown()" />
+      <div class="circle user-bg" >
+         <img src="/m/default/media/images/user-icon.svg" id="user_icon_dropdown" title="{{ request.user.username|escape }}"/>
       </div>  
     <div class="dropdown-user" id="user_dropdown">
         <ul>
@@ -11,12 +10,15 @@
             <li class="karma">
                 {%- if settings.KARMA_MODE != 'hidden' or settings.BADGES_MODE != 'hidden' -%}
                 {{ macros.user_long_score_and_badge_summary(user) }}
-            {%- endif -%}
-        </li>
-            <li ><img src="/m/default/media/images/profile-icon.svg" />
-                <a href="{{ request.user.get_absolute_url() }}">My Profile</a></li>
+                 {%- endif -%}
+             </li>
+            <li><img src="/m/default/media/images/profile-icon.svg" height="18px" width="18px" />
+                <a href="{{ request.user.get_absolute_url() }}">My Profile</a>
+            </li>
             <li>{% set next_jwt=encode_jwt({'next_url': settings.LOGOUT_REDIRECT_URL}) %}
-                <img src="/m/default/media/images/logout-icon.svg" /><a href="{{ settings.LOGOUT_URL }}?next={{ next_jwt }}">{% trans %}sign out{% endtrans %}</a></li>
+                <img src="/m/default/media/images/logout-icon.svg"  height="18px" width="18px"/>
+                <a href="{{ settings.LOGOUT_URL }}?next={{ next_jwt }}">{% trans %}sign out{% endtrans %}</a>
+            </li>
         </ul>
     </div>    
 </div>

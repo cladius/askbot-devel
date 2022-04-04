@@ -20,7 +20,7 @@ settings.register(
         WORDS,
         'WORDS_ASK_YOUR_QUESTION',
         default=_('Ask a question'),
-        description=_('Ask Your Question'),
+        description=_('Ask a question'),
         help_text=_('Used on a button'),
         localized=True
     )
@@ -503,8 +503,8 @@ settings.register(
     values.StringValue(
         WORDS,
         'WORDS_ASK_A_QUESTION_INTERESTING_TO_THIS_COMMUNITY',
-        default=_('ask a question interesting to this community'),
-        description=_('ask a question interesting to this community'),
+        default=_('Ask a question interesting to this community'),
+        description=_('Ask a question interesting to this community'),
         localized=True
     )
 )

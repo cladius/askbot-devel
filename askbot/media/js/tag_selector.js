@@ -139,9 +139,9 @@ function pickedTags() {
             dataType: 'json'
         };
         if (callback !== false) {
-            call_settings.success = callback;
+            call_settings.success = callback;           
         }
-        $.ajax(call_settings);
+        $.ajax(call_settings);        
     };
 
     var unpickTag = function (from_target, tagname, reason, send_ajax) {
@@ -316,7 +316,7 @@ function pickedTags() {
                 reason,
                 'add',
                 function (reData) {
-                    if (reData.success) {
+                    if (reData.success) {                        
                         renderNewTags(
                             clean_tagnames,
                             reason,
@@ -366,7 +366,7 @@ function pickedTags() {
                         return false;
                     });
                 }
-                tag_store[tag.getName()] = $(item);
+                tag_store[tag.getName()] = $(item);                
             }
         );
     };
@@ -394,6 +394,8 @@ function pickedTags() {
         });
     };
 
+
+    /* Toggle interesing tag */
     var setupInterestingTagFilterControl = function (control_type) {
         var checkboxButtons = $('#interesting_tag');
          checkboxButtons.click(function () {
@@ -408,14 +410,25 @@ function pickedTags() {
                     filter_value: clickedBtn.val()
                 },
                 success: function () {
-                    clickedBtn.prop('checked', true).trigger('change'); // trigger other listeners on the radio
-                    askbot.controllers.fullTextSearch.refresh();
+                    if(clickedBtn.val() == 2){
+                        clickedBtn.prop('value', "0");
+                        clickedBtn.prop('checked', true).trigger('change'); // trigger other listeners on the radio
+                        if($('#ignore_tag').prop('checked')){
+                            $('#ignore_tag').prop('value', "1").trigger('change');
+                            $('#ignore_tag').prop('checked', false).trigger('change');                            
+                        }
+                        askbot.controllers.fullTextSearch.refresh();
+                    }else if(clickedBtn.val() == 0){
+                         clickedBtn.prop('value', "2");
+                         clickedBtn.prop('checked', false).trigger('change'); // trigger other listeners on the radio
+                         askbot.controllers.fullTextSearch.refresh();
+                    }                    
                 }
             });
             return false;
         });
     };
-
+    /* toggle ignored tag */
     var setupIgnoredTagFilterControl = function (control_type) {
         var checkboxButtons = $('#ignore_tag');
          checkboxButtons.click(function () {
@@ -430,18 +443,85 @@ function pickedTags() {
                     filter_value: clickedBtn.val()
                 },
                 success: function () {
-                    clickedBtn.prop('checked', true).trigger('change'); // trigger other listeners on the radio
-                    askbot.controllers.fullTextSearch.refresh();
+                    if(clickedBtn.val() == 1){                        
+                        clickedBtn.prop('value', "0");
+                        clickedBtn.prop('checked', true).trigger('change'); // trigger other listeners on the radio
+                        if($('#interesting_tag').prop('checked')){
+                            $('#interesting_tag').prop('value', "2").trigger('change');
+                            $('#interesting_tag').prop('checked', false).trigger('change');                        
+                        }
+                        askbot.controllers.fullTextSearch.refresh();
+                    }else if(clickedBtn.val() == 0){
+                         clickedBtn.prop('value', "1");
+                         clickedBtn.prop('checked', false).trigger('change'); // trigger other listeners on the radio
+                         askbot.controllers.fullTextSearch.refresh();
+                    }                    
                 }
             });
             return false;
         });
     };
 
+     $( "#ignored_Tag_Add" ).click(function() {
+        $('#ignored_Tag_Add').css("display","none");
+        $('#ignoredTagCancel').css("border","2px solid #4d4d4d");
+        $('#ignoredTagCancel').css("font-weight","bold");
+        $('#tags_enter_ignore').css("border-top","none");
+                
+        var ignoredInput = $("#add_ignored_div");            
+             if (ignoredInput.is(":visible")) {
+                ignoredInput.css("display","none");
+            } else {
+                ignoredInput.css("display","block");
+                $('#tags_enter_ignore').css("border-top","1px solid #cccccc");
+                $('#ignoredTagInput').prop('value','');
+            }                
+    });
 
+    $("#ignoredTagCancel").click(function() {
+        var ignoredInput = $("#ignored_Tag_Add");            
+            ignoredInput.css("display","block");
+            $("#add_ignored_div").css("display","none");
+            $('#tags_enter_ignore').css("border-top","1px solid #cccccc");                
+            $('#ignoredTagInput').prop('value','');
+    });
+
+    $( "#interesting_Tag_Add" ).click(function() {
+        $('#interesting_Tag_Add').css("display","none");
+        $('#interestingTagCancel').css("border","2px solid #4d4d4d");
+        $('#interestingTagCancel').css("font-weight","bold");
+        $('#tags_enter_interesting').css("border-top","none");
+                
+        var interestingInput = $("#add_interesting_div");            
+             if (interestingInput.is(":visible")) {
+                interestingInput.css("display","none");
+            } else {
+                interestingInput.css("display","block");
+                $('#tags_enter_interesting').css("border-top","1px solid #cccccc");
+                $('#interestingTagInput').prop('value','');
+            }                
+    });
+
+    $("#interestingTagCancel").click(function() {
+        var interestingInput = $("#interesting_Tag_Add");            
+            interestingInput.css("display","block");
+             $("#add_interesting_div").css("display","none");
+            $('#tags_enter_interesting').css("border-top","1px solid #cccccc");                
+            $('#interestingTagInput').prop('value','');
+    });
+    
+    $('#user_icon_dropdown').click(function(){
+        var user_dropdown =  $('#user_dropdown');
+        if (user_dropdown.is(":visible")) {
+            user_dropdown.css("display","none");
+        }else{
+            user_dropdown.css("display","block");
+       }
+    });
+    
     var getResultCallback = function (reason) {
         return function () {
-            handlePickedTag(reason);
+            handlePickedTag(reason);            
         };
     };
 
@@ -453,8 +533,7 @@ function pickedTags() {
             setupTagFilterControl('display');
             setupTagFilterControl('email');
             setupInterestingTagFilterControl('display');
-            setupIgnoredTagFilterControl('display')
-            
+            setupIgnoredTagFilterControl('display');
             var ac = new AutoCompleter({
                 url: askbot.urls.get_tag_list,
                 minChars: 1,

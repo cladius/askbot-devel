@@ -35,8 +35,7 @@
             {{settings.CUSTOM_HEADER}}
         </div>
         {% endif %}
-         {% include "widgets/header.html" %} {# Logo, user tool navigation and meta navitation #}
-        
+         {% include "widgets/header.html" %} {# Logo, user tool navigation and meta navitation #}     
 
         {% include "widgets/secondary_header.html" %} {# Scope selector, search input and ask button #}
         {% if settings.ENABLE_LEADING_SIDEBAR %}
@@ -69,16 +68,8 @@
             for (url_name in askbot['urls']){
                 askbot['urls'][url_name] = cleanUrl(askbot['urls'][url_name]);
             }
-        </script>
-         <script type="text/javascript">
-            function toggle_dropdown(){ 
-                var dropdown = document.getElementById('user_dropdown');
-                if(dropdown.style.display == "block")
-                dropdown.style.display = "none";
-                else   
-                dropdown.style.display = "block" 
-            }        
-            </script>      
+        </script>   
         
+     
     </body>
 </html>
