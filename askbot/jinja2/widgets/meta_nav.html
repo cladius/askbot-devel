@@ -1,29 +1,38 @@
 {% import "macros.html" as macros%}
+  <a
+  id="navTags" 
+  href="{{ url('questions') }}"
+  {% if active_tab == 'questions' %}class="on"{% endif %}
+>Home</a> 
 <a
-  id="navTags"
+  id="navTags" 
   href="{{ url('tags') }}"
   {% if active_tab == 'tags' %}class="on"{% endif %}
 >{% trans %}tags{% endtrans %}</a>
 {% if settings.GROUPS_ENABLED %}
 <span class="dropdown groups-dropdown">
 <a
-  id="navGroups"
+  id="navGroups" 
   {% if active_tab == 'groups' %}class="on"{% endif %}
-  href="{{ url('groups') }}" data-target="#" >
-  {% trans %}people & groups{% endtrans %}
+  href="{{ url('groups') }}" >
+  {% trans %}Groups{% endtrans %}
 </a>
 </span>
 {%else%}
 <a
-  id="navUsers"
+  id="navUsers" 
   href="{{ url('users') }}"
   {% if active_tab == 'users' %}class="on"{% endif %}
 >{% trans %}users{% endtrans %}</a>
 {% endif %}
 {% if settings.BADGES_MODE == 'public' %}
 <a
-  id="navBadges"
+  id="navBadges" 
   href="{{ url('badges') }}"
   {% if active_tab == 'badges' %}class="on"{% endif %}
 >{% trans %}badges{% endtrans %}</a>
 {% endif %}
+<a id="navTags" 
+class="help"
+ style="font-size: 16px;color:#4d4d4d"
+  href="{{ url('help') }}" title="{% trans %}help{% endtrans %}">{% trans %}help{% endtrans %}</a>

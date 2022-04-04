@@ -1,9 +1,5 @@
 {% if active_tab != "ask" %}
 {% filter trim %}
-<div
-    id="searchBar"
-    class="search-bar{% if query %} cancelable{% endif %}"
->
     {# url action depends on which tab is active #}
     {% if active_tab == "tags" %}
         <input type="hidden" name="t" value="tag"/>
@@ -11,6 +7,7 @@
     {% elif active_tab == "users" %}
         <input type="hidden" name="t" value="user"/>
     {% endif %}
+    
     <input
         class="searchInput"
         type="text"
@@ -29,6 +26,7 @@
             style="display: none;"
         {% endif %}
     />
-</div>
 {% endfilter %}
 {% endif %}
+
+

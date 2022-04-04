@@ -1,10 +1,13 @@
 {#% cache 600 "contributors" contributors language_code %#}
-<div id="contrib-users" class="box">
-    <h2 class="contributorback">{% trans %}Contributors{% endtrans %}</h2>
+<div id="contrib-users" class="box_contributer">
+    <div class="wraper-contributer">
+        <h2 class="contributorback">{% trans %}Top contributors{% endtrans %}</h2></div>
+    <div class="avatar-container">
     {% filter trim %}
     {% for person in contributors %}
-        {{ macros.gravatar(person, 48) }}
+        {{ macros.gravatar(person, 40) }}
     {% endfor %}
     {% endfilter %}
+</div>
 </div>
 {#% endcache %#}

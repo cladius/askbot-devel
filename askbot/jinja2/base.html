@@ -25,6 +25,8 @@
         {% endif %}
     </head>
     <body class="{% block body_class %}{% endblock %}{% if user_messages %} user-messages{% endif %}{% if page_class %} {{page_class}}{% endif %}{% if request.user.is_anonymous %} anon{% endif %} lang-{{ current_language_code }}">
+    
+    <div class="main_wrapper">
         {% include "widgets/system_messages.html" %}
         {% include "debug_header.html" %}
         {% include "custom_header.html" ignore missing %}
@@ -33,14 +35,15 @@
             {{settings.CUSTOM_HEADER}}
         </div>
         {% endif %}
-        {% include "widgets/header.html" %} {# Logo, user tool navigation and meta navitation #}
+         {% include "widgets/header.html" %} {# Logo, user tool navigation and meta navitation #}     
+
         {% include "widgets/secondary_header.html" %} {# Scope selector, search input and ask button #}
         {% if settings.ENABLE_LEADING_SIDEBAR %}
         <div id="leading-sidebar">
             {{ settings.LEADING_SIDEBAR }}
         </div>
         {% endif %}
-        <div class="content-wrapper">
+        <div class="content-wrapper-middle">
             {% block body %}
             {% endblock %}
         </div>
@@ -59,10 +62,14 @@
         {% endfilter %}
         {% block endjs %}
         {% endblock %}
+
+    </div>
         <script type="text/javascript">
             for (url_name in askbot['urls']){
                 askbot['urls'][url_name] = cleanUrl(askbot['urls'][url_name]);
             }
-        </script>
+        </script>   
+        
+     
     </body>
 </html>
